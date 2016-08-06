@@ -1,33 +1,16 @@
-# docker-hhvm-typo3-cms
+# docker-hhvm
 
-A Debian based Container for run TYPO3 CMS (6.X) with HHVM
+A Debian based Container with HHVM+Pagespeed+apache2
 
-
-We need a Mysql-Server 
-
-```sh
-$ sudo docker pull mysql
-```
 
 ## Build the Container
 
 ```sh
-$ sudo docker build -t="kartoffeltoby/typo3" .
+$ sudo docker build -t="kartoffeltoby/docker-hhvm" .
 ```
 
 ## Run Container
 
 ```sh
-$ sudo docker run  --restart always --rm=false -itd  -e "MYSQL_ROOT_PASSWORD=server" --name mysql  mysql
-
-$ sudo docker run --restart always --rm=false -itd  -p 80:80 --link mysql:mysql -v typo3/:/app/ kartoffeltoby/typo3
-```
-
-### Maby we musst set the follwing lines in LocalConfiguration.php
-
-```sh
-SYS ->
-
-'setDBinit' => 'SET SESSION sql_mode=\'\'',
-'trustedHostsPattern' => '.*',
+$ sudo docker run --restart always --rm -itd  -p 80:80 -v php-app/:/app/ kartoffeltoby/docker-hhvm
 ```
